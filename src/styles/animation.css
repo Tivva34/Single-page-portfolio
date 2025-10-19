@@ -1,0 +1,86 @@
+.simple-stars {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		z-index: 1;
+}
+.star {
+		position: absolute;
+		width: 3px;
+		height: 3px;
+		background: white;
+		border-radius: 50%;
+		opacity: 0.85;
+		box-shadow: 0 0 16px 2px #fff8;
+		animation: simple-twinkle 2.5s infinite ease-in-out, star-move 8s linear infinite;
+		transition: transform 0.2s cubic-bezier(.4,2,.6,1), box-shadow 0.2s;
+		cursor: pointer;
+	}
+
+	@keyframes star-move {
+		0% { transform: translateY(0) scale(1); }
+		50% { transform: translateY(-12px) scale(1.1); }
+		100% { transform: translateY(0) scale(1); }
+	}
+	.star:nth-child(1) { animation-delay: 0s, 0s; }
+	.star:nth-child(2) { animation-delay: 0.5s, 1.2s; }
+	.star:nth-child(3) { animation-delay: 1s, 2.4s; }
+	.star:nth-child(4) { animation-delay: 1.5s, 3.6s; }
+	.star:nth-child(5) { animation-delay: 2s, 4.8s; }
+	.star:nth-child(6) { animation-delay: 2.5s, 6s; }
+	.star:nth-child(7) { animation-delay: 0.7s, 1.8s; }
+	.star:nth-child(8) { animation-delay: 1.3s, 2.9s; }
+	.star:nth-child(9) { animation-delay: 2.1s, 5.2s; }
+	.star:nth-child(10) { animation-delay: 1.7s, 3.3s; }
+	.star:nth-child(11) { animation-delay: 0.9s, 2.1s; }
+	.star:nth-child(12) { animation-delay: 2.3s, 4.2s; }
+    
+    .star::before, .star::after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	pointer-events: none;
+	border-radius: 2px;
+	opacity: 0.7;
+	transform: translate(-50%, -50%) scale(1);
+	background: linear-gradient(90deg, transparent, #fff 60%, transparent);
+	z-index: 1;
+}
+.star::before {
+	width: 5px;
+	height: 1px;
+	animation: cross-twinkle 2.5s infinite ease-in-out;
+}
+.star::after {
+	width: 1px;
+	height: 5px;
+	animation: cross-twinkle 2.5s infinite ease-in-out reverse;
+}
+@keyframes cross-twinkle {
+	0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+	50% { opacity: 0.2; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.star:hover {
+	transform: scale(1.5);
+	box-shadow: 0 0 32px 8px #fff;
+	opacity: 1;
+}
+@keyframes simple-twinkle {
+	0%, 100% { opacity: 0.85; }
+	50% { opacity: 0.4; }
+}
+.hero {
+	position: relative;
+	overflow: hidden;
+}
+
+
+.hero > *:not(.simple-stars) {
+    position: relative;
+    z-index: 2;
+}
