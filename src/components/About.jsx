@@ -40,7 +40,7 @@ const tools = [
         <p>
           My programming journey began in 2020 during game development studies,
           where I discovered my passion for solving problems through code rather
-          than design. This led me to focus on web development, crafting meaningful
+          than game-design. This led me to focus on web development, crafting meaningful
           user experiences using modern frontend technologies.
         </p>
 

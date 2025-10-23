@@ -1,9 +1,14 @@
-  // Default image for project cards
-  const defaultImage = "/public/default-project.png";
-  // Truncate description helper
-  const truncate = (str, n) => (str?.length > n ? str.slice(0, n - 1) + "..." : str);
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+  
+const defaultImage = "/projects/default-project.png";
+const repoScreenshots = {
+  "Bonz.ai": "/projects/Bonz.ai.png",
+  "Shui": "/projects/Shui.png",
+  "IMDO": "/projects/IMDO.png",
+};
+
+const truncate = (str, n) => (str?.length > n ? str.slice(0, n - 1) + "..." : str);
 
 export default function Projects() {
   const [repos, setRepos] = useState([]);
@@ -15,7 +20,7 @@ export default function Projects() {
       .then((res) => res.json())
       .then((data) => {
         const filtered = data.filter((repo) => !repo.fork);
-        const selectedRepos = ["Nasa-SpaceViewer", "ReadingSloth","Airbean-individuell","IMDO","Shui","Mongodb"]; 
+        const selectedRepos = ["Bonz.ai", "ReadingSloth","Airbean-individuell","IMDO","Shui","Mongodb"]; 
         const finalRepos = filtered.filter((repo) =>
           selectedRepos.includes(repo.name)
         );
@@ -64,12 +69,13 @@ export default function Projects() {
             transition={{ delay: index * 0.1, duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <img
-              src={defaultImage}
-              alt={repo.name + " preview"}
-              className="project-image"
-              style={{ width: "100%", borderRadius: "0.5rem", marginBottom: "1rem" }}
-            />
+            <div className="project-image-viewport">
+              <img
+                src={repoScreenshots[repo.name] || defaultImage}
+                alt={repo.name + " preview"}
+                className="project-image"
+              />
+            </div>
             <h3>{repo.name}</h3>
             <p>{truncate(repo.description || "No description provided.", 140)}</p>
             <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem", flexWrap: "wrap" }}>

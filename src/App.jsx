@@ -11,10 +11,10 @@ function App() {
       <Nav />
       <main>
         <Hero />
-<About />
-<Projects />
-<Skills />
-<Contact />
+        <About />
+        <Projects />
+        <Skills />
+        <Contact />
       </main>
     </>
   );
