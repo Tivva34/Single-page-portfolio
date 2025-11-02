@@ -6,6 +6,7 @@ const repoScreenshots = {
   "Bonz.ai": "/projects/Bonz.ai.png",
   "Shui": "/projects/Shui.png",
   "IMDO": "/projects/IMDO.png",
+  "Nasa-SpaceViewer": "/projects/Nasa2.png",
 };
 
 const truncate = (str, n) => (str?.length > n ? str.slice(0, n - 1) + "..." : str);
@@ -20,7 +21,7 @@ export default function Projects() {
       .then((res) => res.json())
       .then((data) => {
         const filtered = data.filter((repo) => !repo.fork);
-        const selectedRepos = ["Bonz.ai", "ReadingSloth","Airbean-individuell","IMDO","Shui","Mongodb"]; 
+        const selectedRepos = ["Nasa-SpaceViewer", "Bonz.ai", "ReadingSloth","Airbean-individuell","IMDO","Shui"]; 
         const finalRepos = filtered.filter((repo) =>
           selectedRepos.includes(repo.name)
         );
