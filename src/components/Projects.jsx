@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
   
 const defaultImage = "/projects/default-project.png";
+
 const repoScreenshots = {
   "Bonz.ai": "/projects/Bonz.ai.png",
   "Shui": "/projects/Shui.png",
   "IMDO": "/projects/IMDO.png",
   "Nasa-SpaceViewer": "/projects/Nasa2.png",
+  "ReadingSloth": "/projects/ReadingSloth.png",
+  "FadingLightDemo" : "/projects/FadingLight4.png",
+
 };
 
 const truncate = (str, n) => (str?.length > n ? str.slice(0, n - 1) + "..." : str);
@@ -17,24 +21,43 @@ export default function Projects() {
   const username = "Tivva34";
 
   useEffect(() => {
-    fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
+    console.log("Fetching repos...");
+ 
+    const token = import.meta.env.VITE_GITHUB_TOKEN; 
+    
+    const headers = token ? { Authorization: `token ${token}` } : {};
+    
+    fetch(`https://api.github.com/users/${username}/repos?sort=updated`, { headers })
       .then((res) => res.json())
       .then((data) => {
+        console.log("All repos:", data);
+        
+        // Check if data is an array
+        if (!Array.isArray(data)) {
+          console.error("API returned non-array:", data);
+          return;
+        }
+        
         const filtered = data.filter((repo) => !repo.fork);
-        const selectedRepos = ["Nasa-SpaceViewer", "Bonz.ai", "ReadingSloth","Airbean-individuell","IMDO","Shui"]; 
+        console.log("Filtered (no forks):", filtered);
+        const selectedRepos = ["Bonz.ai", "IMDO", "Nasa-SpaceViewer", "ReadingSloth", "Shui", "FadingLightDemo"]; 
         const finalRepos = filtered.filter((repo) =>
           selectedRepos.includes(repo.name)
         );
+        console.log("Final repos to display:", finalRepos);
         setRepos(finalRepos);
 
         finalRepos.forEach((repo) => {
-          fetch(repo.languages_url)
+          fetch(repo.languages_url, { headers })
             .then((res) => res.json())
             .then((langs) => {
-              setRepoLanguages((prev) => ({
-                ...prev,
-                [repo.name]: Object.keys(langs)
-              }));
+              console.log(`Languages for ${repo.name}:`, langs);
+              if (langs && typeof langs === 'object' && !langs.message) {
+                setRepoLanguages((prev) => ({
+                  ...prev,
+                  [repo.name]: Object.keys(langs)
+                }));
+              }
             });
         });
       })

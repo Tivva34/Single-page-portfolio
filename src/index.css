@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -335,32 +336,32 @@ section {
   box-shadow: 0 6px 18px rgba(124, 58, 237, 0.3);
 }
 
-/* Projects image viewport — keep top visible and zoom on hover */
-.project-image-viewport{
+
+.project-image-viewport {
   width: 100%;
-  height: 160px;                /* adjust height as needed */
+  height: 160px;
   border-radius: 0.5rem;
   overflow: hidden;
   margin-bottom: 1rem;
   position: relative;
 }
 
-.project-image{
+.project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;   /* show top of image by default */
+  object-position: top center;
   display: block;
   transition: transform 0.45s ease;
-  transform-origin: top center;  /* zoom anchored at top so top stays visible */
+  transform-origin: top center;
 }
 
-/* zoom on hover (adjust scale to taste) */
-.project-image-viewport:hover .project-image{
+
+.project-image-viewport:hover .project-image {
   transform: scale(1.15);
 }
 
-/* respect reduced motion preference */
+
 @media (prefers-reduced-motion: reduce) {
   .project-image, .project-image-viewport:hover .project-image {
     transition: none;
