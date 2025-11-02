@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
   
-const defaultImage = "/projects/default-project.png";
+const defaultImage = `${import.meta.env.BASE_URL}projects/default-project.png`;
 
 const repoScreenshots = {
-  "Bonz.ai": "/projects/Bonz.ai.png",
-  "Shui": "/projects/Shui.png",
-  "IMDO": "/projects/IMDO.png",
-  "Nasa-SpaceViewer": "/projects/Nasa2.png",
-  "ReadingSloth": "/projects/ReadingSloth.png",
-  "FadingLightDemo" : "/projects/FadingLight4.png",
+  "Bonz.ai": `${import.meta.env.BASE_URL}projects/Bonz.ai.png`,
+  "Shui": `${import.meta.env.BASE_URL}projects/Shui.png`,
+  "IMDO": `${import.meta.env.BASE_URL}projects/IMDO.png`,
+  "Nasa-SpaceViewer": `${import.meta.env.BASE_URL}projects/Nasa2.png`,
+  "ReadingSloth": `${import.meta.env.BASE_URL}projects/ReadingSloth.png`,
+  "FadingLightDemo" : `${import.meta.env.BASE_URL}projects/FadingLight4.png`,
 
 };
 
@@ -23,7 +23,8 @@ export default function Projects() {
   useEffect(() => {
     console.log("Fetching repos...");
  
-    const token = import.meta.env.VITE_GITHUB_TOKEN; 
+    // Only use token in development, not in production build
+    const token = import.meta.env.DEV ? import.meta.env.VITE_GITHUB_TOKEN : undefined; 
     
     const headers = token ? { Authorization: `token ${token}` } : {};
     
