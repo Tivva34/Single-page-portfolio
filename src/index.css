@@ -451,3 +451,18 @@ section {
 		border-bottom-right-radius: 60px;
 	}
 }
+@media (max-width: 420px) {
+  .tools-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.50rem;    
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    .tool-card {
+      height: 130px; 
+      width: 130px; 
+      margin-bottom: .5rem;
+    }
+  }
+
+}

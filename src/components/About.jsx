@@ -39,8 +39,8 @@ const tools = [
         <h2>About Me</h2>
         <p>
           My programming journey began in 2020 during game development studies,
-          where I discovered my passion for solving problems through code rather
-          than game-design. This led me to focus on web development, crafting meaningful
+          where I discovered my passion for solving problems through code. 
+          This led me to focus on web development, crafting meaningful
           user experiences using modern frontend technologies.
         </p>
 

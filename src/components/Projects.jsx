@@ -23,7 +23,6 @@ export default function Projects() {
   useEffect(() => {
     console.log("Fetching repos...");
  
-    // Only use token in development, not in production build
     const token = import.meta.env.DEV ? import.meta.env.VITE_GITHUB_TOKEN : undefined; 
     
     const headers = token ? { Authorization: `token ${token}` } : {};
@@ -33,7 +32,6 @@ export default function Projects() {
       .then((data) => {
         console.log("All repos:", data);
         
-        // Check if data is an array
         if (!Array.isArray(data)) {
           console.error("API returned non-array:", data);
           return;
